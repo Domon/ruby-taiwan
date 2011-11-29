@@ -9,4 +9,5 @@
 //= require jquery.jdialog
 //= require jquery.timeago
 //= require jquery.hotkeys
+//= require jquery.highlight
 //= require app

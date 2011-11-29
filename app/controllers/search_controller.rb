@@ -4,7 +4,10 @@ class SearchController < ApplicationController
     @topics = Topic.all
     @pages = Page.all
 
-    drop_breadcrumb("#{t("common.search")}")
+    @q = params[:q].present? ? params[:q] : ""
+
+    set_seo_meta("#{t("common.search")}: #{@q}")
+    drop_breadcrumb("#{t("common.search")}: #{@q}")
 
     render :stream => true
   end

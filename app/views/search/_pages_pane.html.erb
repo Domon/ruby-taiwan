@@ -1,20 +1,21 @@
-<div class="tab-pane" id="pages">
-  <table>
-    <tr class="head">
-      <td class="title"><%= t("common.title") %></td>
-      <td class="editors"><%= t("pages.wiki_page_contributors") %></td>
-      <td class="updated_at"><%= t("common.last_modified_at") %></td>
-    </tr>
-    <% @pages.each do |page| %>
-      <tr class="topic <%= cycle("odd", "") %>">
-        <td class="title"><%= link_to(page.title, page_path(page)) %></td>
-        <td class="editors">
-          <% page.editors.each do |item| %>
-            <%= user_avatar_tag(item, :small) %>
+<div class="tab-pane active" id="pages">
+  <% @pages.each do |page| %>
+    <div class="page">
+      <div class="header">
+        <h2><%= link_to(page.title, page_path(page)) %></h2>
+        <p class="info"><%= t("common.last_modified_at") %> <%= render_page_updated_at(page) %></p>
+      </div>
+      <div class="summary">
+        <p><%= truncate(page.body, :length => 300) %></p>
+      </div>
+      <div class="editors">
+        <p>
+          <%= t("pages.wiki_page_contributors") %>
+          <% page.editors.each do |editor| %>
+            <%= user_avatar_tag(editor, :small) %>
           <% end %>
-        </td> 
-        <td class="updated_at"><%= render_page_updated_at(page) %></td>
-      </tr>
-    <% end %>
-  </table>
+        </p>
+      </div>
+    </div>
+  <% end %>
 </div>
