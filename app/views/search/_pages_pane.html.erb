@@ -1,0 +1,20 @@
+<div class="tab-pane" id="pages">
+  <table>
+    <tr class="head">
+      <td class="title"><%= t("common.title") %></td>
+      <td class="editors"><%= t("pages.wiki_page_contributors") %></td>
+      <td class="updated_at"><%= t("common.last_modified_at") %></td>
+    </tr>
+    <% @pages.each do |page| %>
+      <tr class="topic <%= cycle("odd", "") %>">
+        <td class="title"><%= link_to(page.title, page_path(page)) %></td>
+        <td class="editors">
+          <% page.editors.each do |item| %>
+            <%= user_avatar_tag(item, :small) %>
+          <% end %>
+        </td> 
+        <td class="updated_at"><%= render_page_updated_at(page) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
